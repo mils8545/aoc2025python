@@ -1,4 +1,4 @@
-import sys
+import sys, time
 
 def parse_input(filename : str):
     with open(filename, 'r') as f:
@@ -45,8 +45,14 @@ if __name__ == "__main__":
 
     puzzle_input : list[str] = parse_input(input_filename)
 
+    start_time : float = time.time()
     part1_answer : str = solve_part1(puzzle_input)
     print(f"Part 1: {part1_answer}")
+    end_time : float = time.time()
+    print(f"Part 1 took - {round((end_time - start_time) * 1000)} miliseconds")
 
+    start_time = time.time()
     part2_answer : str = solve_part2(puzzle_input)
     print(f"Part 2: {part2_answer}")
+    end_time = time.time()
+    print(f"Part 2 took - {round((end_time - start_time) * 1000)} miliseconds")
