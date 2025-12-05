@@ -70,8 +70,6 @@ def solve_part2(lines : list[str]):
     for range in ranges:
         result += range[1] - range[0] + 1
 
-
-
     return f"{result}"
 
 if __name__ == "__main__":
