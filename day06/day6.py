@@ -45,7 +45,7 @@ def solve_part1(lines : list[str]):
                 sum = sum + int(row[col])
             result = result + sum
                 
-    return f"{result}"
+    return f"The result of the equations is {result}"
 
 def solve_part2(lines : list[str]):
     separators : list[int] = []
@@ -94,7 +94,7 @@ def solve_part2(lines : list[str]):
                 sum = sum + int(t)
             result = result + sum
                 
-    return f"{result}"
+    return f"The result of the equations is {result}"
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

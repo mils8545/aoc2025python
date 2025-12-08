@@ -37,7 +37,7 @@ def solve_part1(lines : list[str]):
                 count += 1
                 break
 
-    return f"{count}"
+    return f"There are {count} fresh ingredients"
 
 def solve_part2(lines : list[str]):
     ranges : list[tuple[int,int]] = []
@@ -70,7 +70,7 @@ def solve_part2(lines : list[str]):
     for range in ranges:
         result += range[1] - range[0] + 1
 
-    return f"{result}"
+    return f"There are {result} possible fresh ingredients"
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

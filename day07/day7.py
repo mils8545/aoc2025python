@@ -24,7 +24,7 @@ def solve_part1(lines : list[str]):
                     next[i+1] = beams[i]
         beams = next
 
-    return f"{count}"
+    return f"A beam is split {count} times"
 
 def solve_part2(lines : list[str]):
     beams = [0] * len(lines[0])
@@ -44,7 +44,7 @@ def solve_part2(lines : list[str]):
                     next[i+1] += beams[i]
         beams = next
 
-    return f"{count}"
+    return f"There are {count} possible futures"
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
