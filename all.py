@@ -130,7 +130,6 @@ end_time = time.time()
 total += end_time - start_time
 print(f"Part 2 took - {round((end_time - start_time) * 1000)} miliseconds")
 print('--------------------------------------')
-print(f"Total runtime - {round(total * 1000)} miliseconds")
 
 print("Day - 9")
 input_filename = "day09/input.txt" # Default input file name
