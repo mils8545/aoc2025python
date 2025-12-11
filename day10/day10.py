@@ -1,5 +1,5 @@
 import sys, time
-from z3 import *
+from z3 import Int, IntVector, Optimize, Sum, sat # type: ignore
 
 def parse_input(filename : str):
     with open(filename, 'r') as f:
@@ -20,15 +20,15 @@ def lightswitchflick(l: str, switch : list[int]):
     return result
 
 # Taken from https://gist.github.com/HexTree/0827398e16a39f6c1a7e62cabc782579
-def get_ip_solution(goal, buttons):
+def get_ip_solution(goal : list[int], buttons : list[list[int]]): 
     n = len(goal)
     X = IntVector('x', len(buttons))
 
     s = Optimize()
-    for k in range(len(buttons)):
-        s.add([x >= 0 for x in X])
+    for _k in range(len(buttons)):
+        s.add([x >= 0 for x in X]) # type: ignore
 
-    A = []
+    A : list[list[int]] = []
     for button in buttons:
         row = [0 for _ in range(n)]
         for w in button:
@@ -36,13 +36,13 @@ def get_ip_solution(goal, buttons):
         A.append(row)
 
     for i in range(n):
-        s.add(Sum(X[k]*A[k][i] for k in range(len(buttons))) == goal[i])
-    s.minimize(Sum(X))
+        s.add(Sum(X[k]*A[k][i] for k in range(len(buttons))) == goal[i]) # type: ignore
+    s.minimize(Sum(X)) # type: ignore
 
     # Check for satisfiability and get the model
-    if s.check() == sat:
+    if s.check() == sat: # type: ignore
         model = s.model()
-        return sum(model[k].as_long() for k in model)
+        return sum(model[k].as_long() for k in model) # type: ignore
     else:
         print("No solution found.")
 
@@ -77,7 +77,7 @@ def solve_part1(lines : list[str]):
                     if result not in seen:
                         queue.append((result,pushes + 1))
                         seen.add(result)
-    return f"{total}"
+    return f"The fewest presses required to set the lights is {total}"
 
 def solve_part2(lines : list[str]):
     joltages : list[list[int]] = []
@@ -90,12 +90,12 @@ def solve_part2(lines : list[str]):
             switchlist.append(list(map(int, switchstr.strip("()").split(","))))
         switches.append(switchlist)
     
-    total = 0
+    total : int = 0
 
     for i in range(len(joltages)):
-        total += get_ip_solution(joltages[i], switches[i])
+        total += get_ip_solution(joltages[i], switches[i]) # type: ignore
 
-    return f"{total}"
+    return f"The fewest presses required to set the joltages is {total}"
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
